@@ -13,3 +13,9 @@ test('renders input tag for id', () => {
   const idInput = screen.getByLabelText('id-input');
   expect(idInput).toBeInTheDocument();
 })
+
+test('renders input tag for password', () => {
+  render(<App />);
+  const idInput = screen.getByLabelText('password-input');
+  expect(idInput).toBeInTheDocument();
+})
