@@ -19,3 +19,9 @@ test('renders input tag for password', () => {
   const idInput = screen.getByLabelText('password-input');
   expect(idInput).toBeInTheDocument();
 })
+
+test('renders button tag to submit', () => {
+  render(<App />);
+  const submitButton = screen.getByRole('button');
+  expect(submitButton).toBeInTheDocument();
+})
