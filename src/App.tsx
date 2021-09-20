@@ -6,6 +6,7 @@ function App() {
     <div className="App">
       <input aria-label="id-input" />
       <input aria-label="password-input" />
+      <button>submit</button>
     </div>
   );
 }
