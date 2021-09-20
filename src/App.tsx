@@ -20,6 +20,7 @@ function App() {
         </a>
       </header>
       <input aria-label="id-input" />
+      <input aria-label="password-input" />
     </div>
   );
 }
