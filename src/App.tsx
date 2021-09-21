@@ -1,12 +1,23 @@
-import React from 'react';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
 function App() {
-  return (
+  const [shouldShowMainPage, setShowMainPage] = useState(false);
+  return !shouldShowMainPage ? (
     <div className="App">
       <input aria-label="id-input" />
       <input aria-label="password-input" />
-      <button>submit</button>
+      <button
+        onClick={() => {
+          setShowMainPage(true);
+        }}
+      >
+        submit
+      </button>
+    </div>
+  ) : (
+    <div>
+      <span>main page</span>
     </div>
   );
 }
