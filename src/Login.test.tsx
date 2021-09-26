@@ -13,8 +13,8 @@ describe("Login component", () => {
   });
 
   test("renders input tag for password", () => {
-    const idInput = screen.getByLabelText("password-input");
-    expect(idInput).toBeInTheDocument();
+    const passwordInput = screen.getByLabelText("password-input");
+    expect(passwordInput).toBeInTheDocument();
   });
 
   test("renders button tag to submit", () => {
@@ -25,5 +25,13 @@ describe("Login component", () => {
   test("should be available to click submit button with id and password", () => {
     const submitButton = screen.getByRole("button");
     expect(submitButton).toBeDisabled();
+
+    const idInput = screen.getByLabelText("id-input");
+    fireEvent.change(idInput, { target: { value: "sample_id" } });
+
+    const passwordInput = screen.getByLabelText("password-input");
+    fireEvent.change(passwordInput, { target: { value: "password123" } });
+
+    expect(submitButton).not.toBeDisabled();
   });
 });
