@@ -7,10 +7,31 @@ describe("App component", () => {
     render(<App />);
   });
 
-  test.skip("renders main page after clicking submit button", () => {
+  test("renders main page after clicking submit button", () => {
+    const idInput = screen.getByLabelText("id-input");
+    fireEvent.change(idInput, { target: { value: "sample_id" } });
+
+    const passwordInput = screen.getByLabelText("password-input");
+    fireEvent.change(passwordInput, { target: { value: "password123" } });
+
     const submitButton = screen.getByRole("button");
     fireEvent.click(submitButton);
+
     const mainPageElement = screen.getByText(/main page/);
     expect(mainPageElement).toBeInTheDocument();
+  });
+
+  test("does not render main page with invalid account info after clicking submit button", () => {
+    const idInput = screen.getByLabelText("id-input");
+    fireEvent.change(idInput, { target: { value: "failing_id" } });
+
+    const passwordInput = screen.getByLabelText("password-input");
+    fireEvent.change(passwordInput, { target: { value: "invalid_password" } });
+
+    const submitButton = screen.getByRole("button");
+    fireEvent.click(submitButton);
+
+    const mainPageElement = screen.getByText(/main page/);
+    expect(mainPageElement).not.toBeInTheDocument();
   });
 });
