@@ -1,5 +1,6 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
+import * as auth from "./api/auth";
 import App from "./App";
 
 describe("App component", () => {
@@ -31,7 +32,7 @@ describe("App component", () => {
     const submitButton = screen.getByRole("button");
     fireEvent.click(submitButton);
 
-    const mainPageElement = screen.getByText(/main page/);
+    const mainPageElement = screen.queryByText(/main page/);
     expect(mainPageElement).not.toBeInTheDocument();
   });
 });
