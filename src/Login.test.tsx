@@ -3,9 +3,11 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import Login from "./Login";
 import * as auth from "./api/auth";
 
+const noop = () => {};
+
 describe("Login component", () => {
   beforeEach(() => {
-    render(<Login />);
+    render(<Login isSignIn={noop} />);
   });
 
   test("renders input tag for id", () => {
