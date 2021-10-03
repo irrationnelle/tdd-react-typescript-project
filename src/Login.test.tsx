@@ -34,4 +34,18 @@ describe("Login component", () => {
 
     expect(submitButton).not.toBeDisabled();
   });
+
+  test("should call signIn function after clicking submit button", () => {
+    const mock = jest.spyOn(auth, "signIn");
+    const idInput = screen.getByLabelText("id-input");
+    fireEvent.change(idInput, { target: { value: "sample_id" } });
+
+    const passwordInput = screen.getByLabelText("password-input");
+    fireEvent.change(passwordInput, { target: { value: "password123" } });
+
+    const submitButton = screen.getByRole("button");
+    fireEvent.click(submitButton);
+
+    expect(mock).toBeCalled();
+  });
 });
