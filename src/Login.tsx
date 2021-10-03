@@ -2,18 +2,18 @@ import react, { useState } from "react";
 import { signIn } from "./api/auth";
 
 interface LoginProps {
-  isSignIn?: () => void;
+  isSignIn: () => void;
 }
 
 const Login: React.FC<LoginProps> = ({ isSignIn }: LoginProps) => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
+
   const handleSubmit = () => {
     signIn();
-    if (isSignIn) {
-      isSignIn();
-    }
+    isSignIn();
   };
+
   return (
     <div className="App">
       <input
