@@ -1,4 +1,5 @@
 import react, { useState } from "react";
+import { signIn } from "./api/auth";
 
 interface LoginProps {
   isSignIn?: () => void;
@@ -7,6 +8,12 @@ interface LoginProps {
 const Login: React.FC<LoginProps> = ({ isSignIn }: LoginProps) => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
+  const handleSubmit = () => {
+    signIn();
+    if (isSignIn) {
+      isSignIn();
+    }
+  };
   return (
     <div className="App">
       <input
@@ -23,7 +30,7 @@ const Login: React.FC<LoginProps> = ({ isSignIn }: LoginProps) => {
           setPassword(event.target.value);
         }}
       />
-      <button onClick={isSignIn} disabled={!id || !password}>
+      <button onClick={handleSubmit} disabled={!id || !password}>
         submit
       </button>
     </div>

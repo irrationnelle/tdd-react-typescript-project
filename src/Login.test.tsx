@@ -1,6 +1,7 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import Login from "./Login";
+import * as auth from "./api/auth";
 
 describe("Login component", () => {
   beforeEach(() => {
