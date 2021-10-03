@@ -10,8 +10,10 @@ const Login: React.FC<LoginProps> = ({ isSignIn }: LoginProps) => {
   const [password, setPassword] = useState("");
 
   const handleSubmit = () => {
-    signIn();
-    isSignIn();
+    const isSignInSuccess = signIn(id, password);
+    if (isSignInSuccess) {
+      isSignIn();
+    }
   };
 
   return (
