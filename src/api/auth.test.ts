@@ -1,4 +1,3 @@
-import { signIn } from "./auth";
 import { firebaseConfig } from "../constant/firebase-config";
 import { initializeApp } from "firebase/app";
 import {
@@ -9,15 +8,29 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 
-const app = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 const auth = getAuth();
 connectAuthEmulator(auth, "http://localhost:9099");
 
-test("Example test case", async () => {
+const randomEmail =
+  (Math.random() + 1).toString(36).substring(7) + "@email.net";
+
+test("create new user with email and password", async () => {
+  const newUser: UserCredential = await createUserWithEmailAndPassword(
+    auth,
+    randomEmail,
+    "bla2377"
+  );
+  expect(newUser).toBeTruthy();
+  console.log("newUser: ", newUser);
+  expect(newUser.user).toBeTruthy();
+});
+
+test("sign in with user who is already created", async () => {
   try {
     const cred: UserCredential = await signInWithEmailAndPassword(
       auth,
-      "foo@bar.de",
+      randomEmail,
       "bla2377"
     );
     expect(cred).toBeTruthy();
@@ -26,11 +39,4 @@ test("Example test case", async () => {
     console.log(e);
     throw e;
   }
-});
-
-test("signIn function should communicate with api server to recognize valid account", () => {
-  const id = "valid_id";
-  const password = "valid_password";
-  const isSignIn = signIn(id, password);
-  expect(isSignIn).toBeTruthy();
 });
